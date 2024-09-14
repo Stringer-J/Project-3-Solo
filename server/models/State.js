@@ -1,6 +1,14 @@
+const mongoose = require('mongoose');
 
+const { Schema } = mongoose;
 
+const stateSchema = new Schema({
 
+});
+
+const State = mongoose.model('State', stateSchema);
+
+module.exports = State;
 
 
 // heat varchar

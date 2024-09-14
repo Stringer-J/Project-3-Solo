@@ -1,6 +1,14 @@
+const mongoose = require('mongoose');
 
+const { Schema } = mongoose;
 
+const plantSchema = new Schema({
 
+});
+
+const Plant = mongoose.model('Plant', plantSchema);
+
+module.exports = Plant;
 
 
 // state varchar
