@@ -3,7 +3,15 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const startUpSchema = new Schema({
+    amountOfWater: {
 
+    },
+    soil: {
+
+    },
+    shade: {
+        
+    }
 });
 
 const StartUp = mongoose.model('StartUp', startUpSchema);

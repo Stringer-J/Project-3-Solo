@@ -3,7 +3,25 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const stateSchema = new Schema({
+    heat: {
 
+    },
+    shade: {
+
+    },
+    water: {
+
+    },
+    plants: [
+        {
+
+        }
+    ],
+    bugs: [
+        {
+
+        }
+    ]
 });
 
 const State = mongoose.model('State', stateSchema);
