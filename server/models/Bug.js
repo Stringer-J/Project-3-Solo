@@ -1,0 +1,6 @@
+
+
+
+
+
+// isGood Boolean

@@ -1,0 +1,7 @@
+
+
+
+
+
+// isGoodForPeople Boolean
+// isGoodForAnimals Boolean
