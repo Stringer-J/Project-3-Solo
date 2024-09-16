@@ -4,10 +4,12 @@ const { Schema } = mongoose;
 
 const helpfulSchema = new Schema({
     isGoodForPeople: {
-
+        type: Boolean,
+        required: true
     },
     isGoodForPlants: {
-        
+        type: Boolean,
+        required: true
     }
 });
 
