@@ -4,13 +4,13 @@ const { Schema } = mongoose;
 
 const startUpSchema = new Schema({
     amountOfWater: {
-
+        type: String
     },
     soil: {
-
+        type: String
     },
     shade: {
-        
+        type: Boolean
     }
 });
 
