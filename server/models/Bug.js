@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 
 const bugSchema = new Schema({
     isGood: {
-        
+        type: Boolean,
+        required: true
     }
 });
 
