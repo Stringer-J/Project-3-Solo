@@ -9,7 +9,6 @@ const Home = () => {
     return (
         <>
         <div className='homeBody'>
-            {/* <h1>Home</h1> */}
             {/* Bootstrap Carousel */}
             <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
@@ -31,7 +30,15 @@ const Home = () => {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="sr-only">Next</span>
                     </a>
-                </div>
+            </div>
+            <div className='aboutUsBox'>
+                 {/* about us info would go here */}
+                 <h1>About Us Info</h1>
+            </div>
+            <div className='plantFinderBox'>
+                 {/* about us info would go here */}
+                 <h1>Info about Plant Finder/link to Plant Finder</h1>
+            </div>
         </div>
         </>
     )
