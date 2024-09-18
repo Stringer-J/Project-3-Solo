@@ -14,11 +14,21 @@
 }
 
 .siteTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 27%;
   margin-left: 2%;
 }
 
 .siteTitle h1 {
   color: black;
+}
+
+.siteTitle img {
+  height: 50px;
+  width: 50px;
+  margin-right: 2%;
 }
 
 .buttonBox {

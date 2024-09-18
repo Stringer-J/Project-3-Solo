@@ -16,6 +16,7 @@ function App() {
       <div className='headerNav'>
 
         <div className='siteTitle'>
+        <img src='./src/assets/Animal_Crossing_Leaf.svg' alt='Leaf Icon' />
           <h1>Leafy Dreams</h1>
         </div>
 
