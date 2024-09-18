@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Bug, Helpful, Maintenance, Plant, StartUp, State, User } = require('./server/models');
+const User = require('./models/User');
 
 const users = [
     { firstName: 'Josh', lastName: 'Stringer', email: 'joshstringer@live.com', password: '123' },
