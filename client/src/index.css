@@ -2,8 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border: solid black 5px;
+}
+
+.siteTitle {
+  margin-left: 2%;
 }
 
 .siteTitle h1 {
   color: blue;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  margin-right: 2%;
 }
