@@ -12,31 +12,39 @@ function App() {
   return (
     <>
     <Router>
-      <h1>Josh Is A Person</h1>
+      <div className='headerNav'>
 
-        <Link to="/">
-          <button>Home</button>
-        </Link>
+        <div className='siteTitle'>
+          <h1>Leafy Dreams</h1>
+        </div>
 
-        <Link to="/signup">
-          <button>Sign Up</button>
-        </Link>
+        <div className='buttonBox'>
+          <Link to="/">
+            <button>Home</button>
+          </Link>
 
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
+          <Link to="/signup">
+            <button>Sign Up</button>
+          </Link>
 
-        <Link to="/profile">
-          <button>Profile</button>
-        </Link>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
 
-        <Link to="/area-info">
-          <button>Area Info</button>
-        </Link>
+          <Link to="/profile">
+            <button>Profile</button>
+          </Link>
 
-        <Link to="/plant-info">
-          <button>Plant Info</button>
-        </Link>
+          <Link to="/area-info">
+            <button>Area Info</button>
+          </Link>
+
+          <Link to="/plant-info">
+            <button>Plant Info</button>
+          </Link>
+        </div>
+        
+      </div>
 
         <Routes>
           <Route path="/" element={<Home />} />

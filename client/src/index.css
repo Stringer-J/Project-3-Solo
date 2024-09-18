@@ -1,0 +1,9 @@
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.siteTitle h1 {
+  color: blue;
+}
