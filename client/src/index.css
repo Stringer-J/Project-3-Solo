@@ -1,8 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .headerNav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: solid black 5px;
+  border-bottom: solid black 3px;
+  height: 10vh;
+  width: 100vw;
 }
 
 .siteTitle {
@@ -10,12 +18,20 @@
 }
 
 .siteTitle h1 {
-  color: blue;
+  color: black;
 }
 
 .buttonBox {
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  width: 27%;
   margin-right: 2%;
+}
+
+.buttonBox button {
+  border-radius: 5px;
+  color: aliceblue;
+  background-color: black;
+  height: 30px;
+  width: 70px;
 }
