@@ -18,7 +18,7 @@
   flex-direction: row;
   align-items: center;
   width: 27%;
-  margin-left: 2%;
+  margin-left: 5%;
 }
 
 .siteTitle h1 {
@@ -34,8 +34,8 @@
 .buttonBox {
   display: flex;
   justify-content: space-between;
-  width: 27%;
-  margin-right: 2%;
+  width: 25%;
+  margin-right: 5%;
 }
 
 .buttonBox button {
@@ -44,4 +44,5 @@
   background-color: black;
   height: 30px;
   width: 70px;
+  cursor: pointer;
 }
