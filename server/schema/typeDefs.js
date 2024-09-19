@@ -11,6 +11,7 @@ const typeDefs = gql`
 
     type Query {
         getAllUsers: [User]
+        getUser(userId: ID!): User
     }
 
     type Mutation {

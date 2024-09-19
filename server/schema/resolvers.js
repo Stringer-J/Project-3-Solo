@@ -11,7 +11,16 @@ const resolvers = {
             } catch (error) {
                 throw new Error('Failed to fetch users');
             }       
-        }
+        },
+
+        getUser: async (parent, { userId }) => {
+            try {
+                const user = await User.findOne({ _id: userId });
+                return user;
+            } catch (error) {
+                throw new Error('Failed to fetch user');
+            }
+        },
     },
 
     Mutation: {
