@@ -13,7 +13,7 @@ const resolvers = {
             }       
         },
 
-        getUser: async (parent, { userId }) => {
+        getUser: async (_, { userId }) => {
             try {
                 const user = await User.findOne({ _id: userId });
                 return user;
@@ -24,7 +24,7 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (parent, { firstName, lastName, email, password }) => {
+        addUser: async (_, { firstName, lastName, email, password }) => {
             try {
                 if (!firstName || !lastName || !email || !password) {
                     throw new Error('First and Last name, as well as email and password required');
@@ -38,7 +38,7 @@ const resolvers = {
                 throw new Error('Failed to create new user');
             }
         },
-        updateUser: async (parent, { _id, firstName, lastName, email, password }) => {
+        updateUser: async (_, { _id, firstName, lastName, email, password }) => {
             try {
                 const updateData = {};
                 if (firstName) updateData.firstName = firstName;
