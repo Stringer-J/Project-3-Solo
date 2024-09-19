@@ -24,7 +24,6 @@ const resolvers = {
     },
 
     Mutation: {
-        hello: () => 'Hello From Mutation!',
         addUser: async (parent, { firstName, lastName, email, password }) => {
             try {
                 if (!firstName || !lastName || !email || !password) {
@@ -34,11 +33,37 @@ const resolvers = {
                 const newUser = new User({ firstName, lastName, email, password });
                 const savedUser = await newUser.save();
                 return savedUser;
-                
+
             } catch (error) {
                 throw new Error('Failed to create new user');
             }
         },
+        updateUser: async (parent, { _id, firstName, lastName, email, password }) => {
+            try {
+                const updateData = {};
+                if (firstName) updateData.firstName = firstName;
+                if (lastName) updateData.lastName = lastName;
+                if (email) updateData.email = email;
+                if (password) updateData.password = password;
+
+                if (!_id || Object.keys(updateData).length === 0) {
+                    throw new Error('ID and at least one field required to update');
+                }
+
+                const updatedUser = await User.findByIdAndUpdate(_id, updateData, {
+                    new: true,
+                    runValidators: true
+                });
+
+                if (!updatedUser) {
+                    throw new Error('User not found');
+                }
+
+                return updatedUser;
+            } catch (error) {
+                throw new Error('Failed to update user');
+            }
+        }
     },
 };
 
