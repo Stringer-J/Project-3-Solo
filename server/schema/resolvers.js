@@ -1,8 +1,17 @@
+const mongoose = require('mongoose');
 const { Bug, Helpful, Maintenance, Plant, StartUp, State } = require('../models');
+const User = require('../models/User');
 
 const resolvers = {
     Query: {
-        hello: () => 'Hello From Query!'
+        getAllUsers: async () => {
+            try {
+                const users = await User.find();
+                return users;
+            } catch (error) {
+                throw new Error('Failed to fetch users');
+            }       
+        }
     },
 
     Mutation: {

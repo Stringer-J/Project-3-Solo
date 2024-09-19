@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home/Home';
@@ -9,9 +10,15 @@ import Search from './pages/Search/Search';
 import AreaInfo from './pages/AreaInfo/AreaInfo';
 import PlantInfo from './pages/PlantInfo/PlantInfo';
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
     <>
+    <ApolloProvider client={client}>
     <Router>
       <div className='headerNav'>
 
@@ -60,6 +67,7 @@ function App() {
           <Route path="/plant-info" element={<PlantInfo />} />
         </Routes>
     </Router>
+    </ApolloProvider>
     </>
   )
 }
