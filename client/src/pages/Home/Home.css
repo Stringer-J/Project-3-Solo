@@ -1,6 +1,7 @@
 .homeBody {
     background-color: rgba(0, 128, 0, 0.186);
     min-height: 90vh;
+    width: 100vw;
     overflow-x: hidden;
     /* margin-left: 5%;
     margin-right: 5%; */
