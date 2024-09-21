@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_USER_MUTATION } from '../../utils/mutations';
 import './Signup.css';
 
 const Signup = () => {
@@ -6,8 +9,10 @@ const Signup = () => {
         username: '',
         email: '',
         password: '',
-        passwordRe: ''
     });
+
+    const [addUser, { loading, error }] = useMutation(ADD_USER_MUTATION);
+    const navigate = useNavigate();
 
     //tested state with a console log, turns out it updates with every single keystroke
     const handleChange = (e) => {
@@ -22,9 +27,16 @@ const Signup = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Signup Form Data:', formData);
+        try {
+            const { data } = await addUser({ variables: {...formData} });
+            console.log('User created:', data.addUser);
+            navigate('/login');
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
     };
 
     return (
@@ -61,17 +73,9 @@ const Signup = () => {
                 required placeholder='Enter your Password'
             /><br /><br />
 
-            <label htmlFor='passwordRe'>Re-enter Password:</label>
-            <input
-                type='password'
-                id='passwordRe'
-                name='passwordRe'
-                value={formData.passwordRe}
-                onChange={handleChange}
-                required placeholder='Re-enter your Password'
-            /><br /><br />
-
-            <button type='submit'>Sign Up</button>
+            <button type='submit' disabled={loading}>
+                {loading ? 'Submitting...' : 'Sign Up'}
+            </button>
         </form>
         </div>
     )
