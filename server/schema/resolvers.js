@@ -24,13 +24,13 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (_, { firstName, lastName, email, password }) => {
+        addUser: async (_, { username, email, password }) => {
             try {
-                if (!firstName || !lastName || !email || !password) {
-                    throw new Error('First and Last name, as well as email and password required');
+                if (!username || !email || !password) {
+                    throw new Error('Username, email and password required');
                 }
 
-                const newUser = new User({ firstName, lastName, email, password });
+                const newUser = new User({ username, email, password });
                 const savedUser = await newUser.save();
                 return savedUser;
 
@@ -38,11 +38,10 @@ const resolvers = {
                 throw new Error('Failed to create new user');
             }
         },
-        updateUser: async (_, { _id, firstName, lastName, email, password }) => {
+        updateUser: async (_, { _id, username, email, password }) => {
             try {
                 const updateData = {};
-                if (firstName) updateData.firstName = firstName;
-                if (lastName) updateData.lastName = lastName;
+                if (username) updateData.username = username;
                 if (email) updateData.email = email;
                 if (password) updateData.password = password;
 
