@@ -35,7 +35,7 @@ const Login = () => {
         try {
             if (data && data.getUser) {
                 console.log('User found:', data.getUser);
-                navigate('/profile');
+                navigate('/profile', { state: { userData: data.getUser }});
             } else {
                 console.log('Email not found');
             }
