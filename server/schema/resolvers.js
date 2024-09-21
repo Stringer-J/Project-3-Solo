@@ -16,6 +16,11 @@ const resolvers = {
         getUser: async (_, { email }) => {
             try {
                 const user = await User.findOne({ email });
+
+                if (!user) {
+                    return null;
+                }
+                
                 return {
                     _id: user._id,
                     username: user.username,
