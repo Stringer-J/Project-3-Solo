@@ -1,0 +1,3 @@
+SIGN UP
+    -needs to let user know if a username or email is already in use instead of just erroring in the console leaving them with no info
+    

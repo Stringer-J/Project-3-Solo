@@ -13,10 +13,15 @@ const resolvers = {
             }       
         },
 
-        getUser: async (_, { userId }) => {
+        getUser: async (_, { email }) => {
             try {
-                const user = await User.findOne({ _id: userId });
-                return user;
+                const user = await User.findOne({ email });
+                return {
+                    _id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    password: user.password
+                };
             } catch (error) {
                 throw new Error('Failed to fetch single user');
             }
