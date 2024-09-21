@@ -16,7 +16,10 @@ const resolvers = {
 
         getUser: async (_, { email }) => {
             try {
-                const user = await User.findOne({ email });
+                const user = await User.findOne({ email })
+                    .populate('plant');
+
+                console.log(user);
 
                 if (!user) {
                     return null;
@@ -26,7 +29,11 @@ const resolvers = {
                     _id: user._id,
                     username: user.username,
                     email: user.email,
-                    password: user.password
+                    password: user.password,
+                    plants: user.plant.map(plant => ({
+                        _id: plant._id,
+                        name: plant.name
+                    }))
                 };
             } catch (error) {
                 throw new Error('Failed to fetch single user');
