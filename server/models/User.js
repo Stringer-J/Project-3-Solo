@@ -11,7 +11,16 @@ const userSchema = new Schema({
     },
     password: {
         type: String
-    }
+    },
+    plant: [{
+        _id: {
+            type: Schema.Types.ObjectId,
+            ref: 'Plant',
+        },
+        name: {
+            type: String
+        }
+    }]
 });
 
 const User = mongoose.model('User', userSchema);

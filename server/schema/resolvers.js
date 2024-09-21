@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const { Bug, Helpful, Maintenance, Plant, StartUp, State } = require('../models');
+const { Bug, Helpful, Maintenance, StartUp, State } = require('../models');
 const User = require('../models/User');
+const Plant = require('../models/Plant');
 
 const resolvers = {
     Query: {
