@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_USER } from '../../utils/queries';
+import { AuthContext } from '../../utils/AuthContext.jsx';
 import './Login.css';
 
 const Login = () => {
@@ -15,6 +16,7 @@ const Login = () => {
         skip: !formData.email
     });
 
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -35,6 +37,7 @@ const Login = () => {
         try {
             if (data && data.getUser) {
                 console.log('User found:', data.getUser);
+                login(data.getUser);
                 navigate('/profile', { state: { userData: data.getUser }});
             } else {
                 console.log('Email not found');

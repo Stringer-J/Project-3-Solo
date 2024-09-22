@@ -1,19 +1,20 @@
-import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../utils/AuthContext';
 import './Profile.css';
 
 const Profile = () => {
-    const location = useLocation();
-    const { userData } = location.state || {};
+    const { user } = useContext(AuthContext);
+
     return (
         <>
             <div className="profileBody">
             <h1>Profile</h1>
-            {userData ? (
+            {user ? (
                 <div>
-                    <p>Username: {userData.username}</p>
-                    <p>Email: {userData.email}</p>
-                    <p>Plants: {userData.plants.length > 0 ? (
-                        userData.plants.map((plant) => (
+                    <p>Username: {user.username}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Plants: {user.plants.length > 0 ? (
+                        user.plants.map((plant) => (
                             <span key={plant._id}>{plant.name}<br></br></span>
                         ))                       
                     ) : (
