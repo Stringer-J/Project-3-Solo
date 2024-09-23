@@ -3,7 +3,11 @@ import { AuthContext } from '../../utils/AuthContext';
 import './Profile.css';
 
 const Profile = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logout();
+    };
 
     return (
         <>
@@ -24,6 +28,7 @@ const Profile = () => {
             ) : (
                 <p>No user data available</p>
             )}
+            <button onClick={handleLogout}>Logout</button>
             </div>
         </>
     )

@@ -48,11 +48,13 @@ const resolvers = {
                     throw new Error('Username, email and password required');
                 }
 
-                const newUser = new User({ username, email, password });
+                const newUser = new User({ username, email, password, plant: [] });
+                console.log(newUser);
                 const savedUser = await newUser.save();
                 return savedUser;
 
             } catch (error) {
+                console.error(error);
                 throw new Error('Failed to create new user');
             }
         },

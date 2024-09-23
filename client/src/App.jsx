@@ -10,7 +10,7 @@ import Search from './pages/Search/Search';
 import AreaInfo from './pages/AreaInfo/AreaInfo';
 import PlantInfo from './pages/PlantInfo/PlantInfo';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
 });

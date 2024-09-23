@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER_MUTATION } from '../../utils/mutations';
+import { GET_SINGLE_USER } from '../../utils/queries';
+import { AuthContext } from '../../utils/AuthContext';
+import { client } from '../../App';
 import './Signup.css';
 
 const Signup = () => {
@@ -13,6 +16,7 @@ const Signup = () => {
 
     const [addUser, { loading, error }] = useMutation(ADD_USER_MUTATION);
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     //tested state with a console log, turns out it updates with every single keystroke
     const handleChange = (e) => {
@@ -31,9 +35,16 @@ const Signup = () => {
         e.preventDefault();
         console.log('Signup Form Data:', formData);
         try {
-            const { data } = await addUser({ variables: {...formData} });
-            console.log('User created:', data.addUser);
-            navigate('/login');
+            const { data: addUserData } = await addUser({ variables: {...formData} });
+            console.log('User created:', addUserData.addUser);
+
+            const { data: userData } = await client.query({
+                query: GET_SINGLE_USER,
+                variables: { email: formData.email },
+            });
+
+            login(userData.getUser);
+            navigate('/profile');
         } catch (error) {
             console.error('Error creating user:', error);
         }
