@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/plant_db';
+const mongoURI = process.env.NODE_ENV === 'production'
+    ? 'mongodb+srv://joshstringer:vHwMvfyHljdttfgC@<cluster>.mongodb.net/plant_db?retryWrites=true&w=majority'
+    : 'mongodb://localhost:27017/plant_db';
 
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
