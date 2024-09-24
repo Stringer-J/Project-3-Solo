@@ -6,7 +6,7 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [plantDetails, setPlantDetails] = useState(null);
-    const [selectedPlant, setSelectedPlant] = useState(null);
+    const [selectedPlantId, setSelectedPlantId] = useState(null);
 
     const fetchPlants = async () => {
         setLoading(true);
@@ -18,7 +18,7 @@ const Search = () => {
             }
             const data = await response.json();
             setPlants(data.data);
-            console.log(data);
+            console.log(data.data);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -26,17 +26,18 @@ const Search = () => {
         }
     };
 
-    const fetchPlantDetails = async (commonName) => {
+    const fetchPlantDetails = async (plantId) => {
+        console.log('Fetching details for Plant ID:', plantId);
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`https://perenual.com/api/species-list?key=sk-hjux66ef51ce55fd36940&q=${encodeURIComponent(commonName)}`);
+            const response = await fetch(`https://perenual.com/api/species/details/${plantId}?key=sk-hjux66ef51ce55fd36940&q`);
             if (!response.ok) {
                 throw new Error()
             }
             const data = await response.json();
-            setPlantDetails(data.data[0]);
-            setSelectedPlant(commonName);
+            setPlantDetails(data);
+            setSelectedPlantId(plantId);
             console.log(data);
         } catch (error) {
             setError(error.message);
@@ -65,13 +66,17 @@ const Search = () => {
                                     <p>No thumbnail available</p>
                                 )}
                                 <p>
-                                    <button onClick={() => fetchPlantDetails(plant.common_name)}>
+                                    <button onClick={() => fetchPlantDetails(plant.id)}>
                                         {plant.common_name || 'No search results'}
                                     </button>
                                 </p>
-                                {selectedPlant === plant.common_name && plantDetails && (
+                                {selectedPlantId === plant.id && plantDetails && (
                                     <div className='plantDetails'>
                                         <p>Cycle: {plantDetails.cycle}</p>
+                                        <p>Other Names: {plantDetails.other_name[0]}</p>
+                                        <p>Scientific Name: {plantDetails.scientific_name[0]}</p>
+                                        <p>Sunlight: {plantDetails.sunlight[0]}</p>
+                                        <p>Watering: {plantDetails.watering}</p>
                                     </div>
                                 )}
                             </li>
