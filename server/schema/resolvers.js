@@ -85,7 +85,24 @@ const resolvers = {
             } catch (error) {
                 throw new Error('Failed to update user');
             }
-        }
+        },
+
+        addPlant: async (_, { email, commonName }) => {
+            try {
+                const user = User.findOne({ email });
+                console.log(user);
+                if (!user) {
+                    throw new Error('User not found');
+                }
+                const newPlant = new Plant({ commonName });
+                await newPlant.save();
+                user.plant.push( commonName );
+                await user.save();
+                return user;
+            } catch (error) {
+                throw new Error(error.message);
+            }
+        },
     },
 };
 
