@@ -9,6 +9,7 @@ const Search = () => {
     const [plantDetails, setPlantDetails] = useState(null);
     const [selectedPlantId, setSelectedPlantId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userPlants, setUserPlants] = useState([]);
 
     const fetchPlants = async () => {
         setLoading(true);
@@ -55,6 +56,11 @@ const Search = () => {
         setPlantDetails(null);
     };
 
+    const addPlant = (commonName) => {
+        setUserPlants((prevPlants) => [...prevPlants, commonName]);
+        console.log(`${commonName} has been added to User`);
+    };
+
     return (
         <>
         <div className="searchBody">
@@ -85,7 +91,7 @@ const Search = () => {
                 )}
             </div>
 
-            <SearchModal isOpen={isModalOpen} onClose={closeModal}>
+            <SearchModal isOpen={isModalOpen} onClose={closeModal} addPlant={addPlant} commonName={plantDetails?.common_name || 'N/A'}>
                 {plantDetails && (
                     <div className='plantDetails'>
                         <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />

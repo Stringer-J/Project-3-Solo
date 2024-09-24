@@ -1,3 +1,12 @@
-SIGN UP
-    -needs to let user know if a username or email is already in use instead of just erroring in the console leaving them with no info
-    
+-Home Page
+-Sign Up
+    -Enter info in form
+    -Creates new user
+    -auto logs in
+-Profile
+    -displays some basic info
+    -lets you log out
+-Search
+    -hit button to make fetch call of a bunch of plants
+    -click on a plant name to see more detail
+    -click add button to add plant to your profile !!!!!!!!!!!!!!!!!!!!!!!!!!!
