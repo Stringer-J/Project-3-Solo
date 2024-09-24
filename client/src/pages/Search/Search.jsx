@@ -33,12 +33,13 @@ const Search = () => {
         try {
             const response = await fetch(`https://perenual.com/api/species/details/${plantId}?key=sk-hjux66ef51ce55fd36940&q`);
             if (!response.ok) {
-                throw new Error()
+                throw new Error('Failed to get plant details');
             }
             const data = await response.json();
             setPlantDetails(data);
             setSelectedPlantId(plantId);
             console.log(data);
+            console.log(plantId);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -72,11 +73,41 @@ const Search = () => {
                                 </p>
                                 {selectedPlantId === plant.id && plantDetails && (
                                     <div className='plantDetails'>
-                                        <p>Cycle: {plantDetails.cycle}</p>
-                                        <p>Other Names: {plantDetails.other_name[0]}</p>
-                                        <p>Scientific Name: {plantDetails.scientific_name[0]}</p>
-                                        <p>Sunlight: {plantDetails.sunlight[0]}</p>
-                                        <p>Watering: {plantDetails.watering}</p>
+                                        <p>Common Name: {plantDetails.common_name || 'N/A'}</p>
+                                        <p>Scientific Name: {plantDetails.scientific_name?.[0] || 'N/A'}</p>
+                                        <p>Other Names: {plantDetails.other_name?.[0] || 'N/A'}</p>
+                                        <p>Cycle: {plantDetails.cycle || 'N/A'}</p>
+                                        <p>Watering: {plantDetails.watering || 'N/A'}</p>
+                                        <p>Depth Water Requirement: {plantDetails.depth_water_requirement?.[0] || 'N/A'}</p>
+                                        <p>Watering Period: {plantDetails.watering_period || 'N/A'}</p>
+                                        <p>Watering General Benchmark:</p>
+                                            <p>Unit: {plantDetails.watering_general_benchmark?.unit || 'N/A'}</p>
+                                            <p>Value: {plantDetails.watering_general_benchmark?.value || 'N/A'}</p>
+                                        <p>Plant Anatomy:</p>
+                                        {plantDetails.plant_anatomy?.length > 0 ? (
+                                            <ul>
+                                                {plantDetails.plant_anatomy?.map((anatomy, index) => (
+                                                    <li key={index}>
+                                                        {anatomy.part}: {anatomy.color.join(', ') || 'N/A'}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p>N/A</p>
+                                        )}
+                                        <p>Sunlight: {plantDetails.sunlight?.[0] || 'N/A'}</p>
+                                        <p>Pruning Months: {plantDetails.pruning_month?.[0] || 'N/A'}</p> 
+                                        {plantDetails.pruning_month && plantDetails.pruning_month.length > 0 ? (
+                                            <ul>
+                                                {plantDetails.pruning_month.map((month, index) => (
+                                                    <li key={index}>
+                                                        {month || 'N/A'}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p>N/A</p>
+                                        )}  
                                     </div>
                                 )}
                             </li>
