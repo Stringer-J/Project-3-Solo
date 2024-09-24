@@ -6,8 +6,6 @@ import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Search from './pages/Search/Search';
-import AreaInfo from './pages/AreaInfo/AreaInfo';
-import PlantInfo from './pages/PlantInfo/PlantInfo';
 
 export const client = new ApolloClient({
   uri: '/graphql',
@@ -60,10 +58,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
 
           <Route path="/search" element={<Search />} />
-
-          <Route path="/area-info" element={<AreaInfo />} />
-
-          <Route path="/plant-info" element={<PlantInfo />} />
         </Routes>
     </Router>
     </ApolloProvider>
