@@ -23,7 +23,7 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String!): User
         updateUser(_id: ID!, username: String, email: String, password: String): User
-        addPlant(commonName: String!): Plant
+        addPlant(email: String!, commonName: String!): User
     }
 `;
 

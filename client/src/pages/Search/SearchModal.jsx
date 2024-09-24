@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './SearchModal.css';
 
-const SearchModal = ({ isOpen, onClose, addPlant, commonName, children }) => {
+const SearchModal = ({ isOpen, onClose, commonName, addPlant, children }) => {
     if (!isOpen) return null;
 
     const handleAddPlant = () => {
@@ -24,8 +24,8 @@ const SearchModal = ({ isOpen, onClose, addPlant, commonName, children }) => {
 SearchModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    addPlant: PropTypes.func.isRequired,
     commonName: PropTypes.string.isRequired,
+    addPlant: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
 };
 

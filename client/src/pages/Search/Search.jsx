@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Search.css';
 import SearchModal from './SearchModal.jsx';
+import { useMutation } from '@apollo/client';
+import { ADD_USER_PLANT_MUTATION } from '../../utils/mutations.js';
+import { AuthContext } from '../../utils/AuthContext.jsx';
 
 const Search = () => {
+    const { user } = useContext(AuthContext);
+    console.log(user);
+
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [plantDetails, setPlantDetails] = useState(null);
     const [selectedPlantId, setSelectedPlantId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [userPlants, setUserPlants] = useState([]);
+    const [addPlant] = useMutation(ADD_USER_PLANT_MUTATION);
 
     const fetchPlants = async () => {
         setLoading(true);
@@ -43,6 +49,7 @@ const Search = () => {
             setSelectedPlantId(plantId);
             console.log(data);
             console.log(plantId);
+            console.log(data.common_name);
             setIsModalOpen(true);
         } catch (error) {
             setError(error.message);
@@ -56,9 +63,11 @@ const Search = () => {
         setPlantDetails(null);
     };
 
-    const addPlant = (commonName) => {
-        setUserPlants((prevPlants) => [...prevPlants, commonName]);
-        console.log(`${commonName} has been added to User`);
+    const handleAddPlant = () => {
+        if (plantDetails && user) {
+            const commonName = plantDetails.common_name;
+            addPlant({ variables: { email: user.email, commonName }});
+        }
     };
 
     return (
@@ -91,7 +100,7 @@ const Search = () => {
                 )}
             </div>
 
-            <SearchModal isOpen={isModalOpen} onClose={closeModal} addPlant={addPlant} commonName={plantDetails?.common_name || 'N/A'}>
+            <SearchModal isOpen={isModalOpen} onClose={closeModal} addPlant={handleAddPlant} commonName={plantDetails?.common_name || 'N/A'}>
                 {plantDetails && (
                     <div className='plantDetails'>
                         <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />

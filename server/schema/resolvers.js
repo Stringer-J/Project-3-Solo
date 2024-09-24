@@ -30,7 +30,7 @@ const resolvers = {
                     password: user.password,
                     plants: user.plant.map(plant => ({
                         _id: plant._id,
-                        name: plant.name
+                        commonName: plant.commonName
                     }))
                 };
             } catch (error) {
@@ -89,16 +89,15 @@ const resolvers = {
 
         addPlant: async (_, { email, commonName }) => {
             try {
-                const user = User.findOne({ email });
+                const user = await User.findOne({ email });
                 console.log(user);
                 if (!user) {
                     throw new Error('User not found');
                 }
-                const newPlant = new Plant({ commonName });
-                await newPlant.save();
-                user.plant.push( commonName );
+                //maybe plant/plants is the issue
+                user.plants.push(commonName);
                 await user.save();
-                return user;
+                return { commonName };
             } catch (error) {
                 throw new Error(error.message);
             }
