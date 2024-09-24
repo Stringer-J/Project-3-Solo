@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const { User, Plant } = require('../models/index');
-// const User = require('../models/User');
-// const Plant = require('../models/Plant');
 
 const resolvers = {
     Query: {

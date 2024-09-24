@@ -1,6 +1,7 @@
 .homeBody {
     background-color: rgba(0, 128, 0, 0.186);
     min-height: 90vh;
+    height: 84vh;
     width: 100vw;
     overflow-x: hidden;
     display: flex;

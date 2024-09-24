@@ -46,8 +46,9 @@ function App() {
           </Link>
         </div>
 
-      </div>
 
+
+      </div>
         <Routes>
           <Route path="/" element={<Home />} />
 
@@ -59,6 +60,9 @@ function App() {
 
           <Route path="/search" element={<Search />} />
         </Routes>
+      <div className='footer'>
+
+      </div>
     </Router>
     </ApolloProvider>
     </>
