@@ -9,15 +9,6 @@ const users = [
     { username: 'Alice_Young', email: 'alicehatesemail@google.com', password: '789', plant: [] }
 ];
 
-const plants = [
-    { name: 'Sunflower'},
-    { name: 'Rose'},
-    { name: 'Bluebonnet'},
-    { name: 'Ivy'},
-    { name: 'Aloe Vera'},
-    { name: 'Lily'}
-];
-
 const mongoURI = process.env.NODE_ENV === 'production'
     ? 'mongodb+srv://joshstringer:vHwMvfyHljdttfgC@plantcluster.jfen1.mongodb.net/plant_db?retryWrites=true&w=majority&appName=PlantCluster'
     : 'mongodb://localhost:27017/plant_db';
@@ -31,16 +22,6 @@ const seedDB = async () => {
 
         await Plant.deleteMany({});
         await User.deleteMany({});
-
-        const addedPlants = await Plant.insertMany(plants);
-        console.log('Plant data seeded!!!');
-
-        users[0].plant.push({ _id: addedPlants[0]._id, name: addedPlants[0].name });
-        users[0].plant.push({ _id: addedPlants[1]._id, name: addedPlants[1].name });
-        users[1].plant.push({ _id: addedPlants[2]._id, name: addedPlants[2].name });
-        users[1].plant.push({ _id: addedPlants[3]._id, name: addedPlants[3].name });
-        users[2].plant.push({ _id: addedPlants[4]._id, name: addedPlants[4].name });
-        users[2].plant.push({ _id: addedPlants[5]._id, name: addedPlants[5].name });
 
         await User.insertMany(users);
         console.log('User data seeded!!!');

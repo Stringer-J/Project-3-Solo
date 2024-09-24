@@ -37,6 +37,11 @@ const resolvers = {
                 throw new Error('Failed to fetch single user');
             }
         },
+
+        getUserPlants: async (_, { email }) => {
+            const user = await User.findOne({ email }).populate('plant');
+            return user ? user.plant : [];
+        },
     },
 
     Mutation: {
