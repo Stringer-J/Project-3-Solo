@@ -28,7 +28,7 @@ const resolvers = {
                     username: user.username,
                     email: user.email,
                     password: user.password,
-                    plants: user.plant.map(plant => ({
+                    plant: user.plant.map(plant => ({
                         _id: plant._id,
                         commonName: plant.commonName
                     }))
@@ -61,6 +61,7 @@ const resolvers = {
                 throw new Error('Failed to create new user');
             }
         },
+
         updateUser: async (_, { _id, username, email, password }) => {
             try {
                 const updateData = {};
@@ -88,17 +89,24 @@ const resolvers = {
         },
 
         addPlant: async (_, { email, commonName }) => {
+            console.log('Email:', email);
+            console.log('Common Name:', commonName);
             try {
                 const user = await User.findOne({ email });
                 console.log(user);
                 if (!user) {
                     throw new Error('User not found');
                 }
+                const newPlant = new Plant({ commonName });
+                await newPlant.save();
                 //maybe plant/plants is the issue
-                user.plants.push(commonName);
+                user.plant.push({ _id: newPlant._id, commonName });
                 await user.save();
-                return { commonName };
+                await user.populate('plant');
+                console.log('Plant added to user:', user);
+                return user;
             } catch (error) {
+                console.error('Error in addPlant:', error.message);
                 throw new Error(error.message);
             }
         },

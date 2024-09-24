@@ -15,7 +15,15 @@ const Search = () => {
     const [plantDetails, setPlantDetails] = useState(null);
     const [selectedPlantId, setSelectedPlantId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [addPlant] = useMutation(ADD_USER_PLANT_MUTATION);
+
+    const [addPlant] = useMutation(ADD_USER_PLANT_MUTATION, {
+        onError: (error) => {
+            console.error('Error adding plant:', error);
+        },
+        onCompleted: (data) => {
+            console.log('Plant added:', data);
+        }
+    });
 
     const fetchPlants = async () => {
         setLoading(true);
@@ -48,6 +56,7 @@ const Search = () => {
             setPlantDetails(data);
             setSelectedPlantId(plantId);
             console.log(data);
+            //how do i get these to go into the user plants array?!
             console.log(plantId);
             console.log(data.common_name);
             setIsModalOpen(true);
@@ -66,7 +75,14 @@ const Search = () => {
     const handleAddPlant = () => {
         if (plantDetails && user) {
             const commonName = plantDetails.common_name;
-            addPlant({ variables: { email: user.email, commonName }});
+            console.log('Adding plant:', commonName, 'for User:', user.email);
+            addPlant({ variables: { email: user.email, commonName }})
+                .then(response => {
+                    console.log('Mutation response:', response);
+                })
+                .catch(error => {
+                    console.error('Mutation error:', error.message);
+                });
         }
     };
 
