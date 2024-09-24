@@ -9,6 +9,7 @@ const SearchModal = ({ isOpen, onClose, children }) => {
             <div className='content' onClick={(e) => e.stopPropagation()}>
                 <button className='close-button' onClick={onClose}>Close</button>
                 {children}
+                <button className='add-button'>Add</button>
             </div>
         </div>
     );

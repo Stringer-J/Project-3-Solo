@@ -88,6 +88,7 @@ const Search = () => {
             <SearchModal isOpen={isModalOpen} onClose={closeModal}>
                 {plantDetails && (
                     <div className='plantDetails'>
+                        <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />
                         <p>Common Name: {plantDetails.common_name || 'N/A'}</p><hr />
                         <p>Scientific Name: {plantDetails.scientific_name?.[0] || 'N/A'}</p><hr />
                         <p>Other Names: {plantDetails.other_name?.[0] || 'N/A'}</p><hr />
