@@ -58,7 +58,6 @@ const Search = () => {
             setPlantDetails(data);
             setSelectedPlantId(plantId);
             console.log(data);
-            //how do i get these to go into the user plants array?!
             console.log(plantId);
             console.log(data.common_name);
             setIsModalOpen(true);
