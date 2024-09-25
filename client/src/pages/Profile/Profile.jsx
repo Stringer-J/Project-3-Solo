@@ -24,8 +24,6 @@ const Profile = () => {
                             {plant.thumbNail ? (
                             <img src={plant.thumbNail} alt='No image' />
                         ) : <img id='noImage' src={noImage} alt='No Image' />}
-
-                                {/* <img src={plant.thumbNail} alt='No Image' /> */}
                                 <span>{plant.commonName}<br></br></span>
                             </div>
                         ))                       

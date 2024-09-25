@@ -90,7 +90,7 @@ const Search = () => {
                 updateUserPlants(updatedPlants);
             } catch (error) {
                 console.error('Error calling addPlant:', error);
-                setSuccessMessage('Plant was added previously...');
+                setSuccessMessage('Plant previously added...');
             }
         }
     };

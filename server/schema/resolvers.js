@@ -99,19 +99,30 @@ const resolvers = {
                 if (!user) {
                     throw new Error('User not found');
                 }
-                const existingPlant = await Plant.findOne({ commonName });
-                if (existingPlant) {
-                    const isPlantAdded = user.plant.some(plant => plant.commonName === commonName);
-                    if (isPlantAdded) {
-                        throw new Error('Plant already in database');
-                    }
-                    console.log('Plant already in database:', existingPlant);
-                    return user;
+                let existingPlant = await Plant.findOne({ commonName });
+                if (!existingPlant) {
+                    existingPlant = new Plant({ commonName, thumbNail });
+                    await existingPlant.save();
                 }
-                const newPlant = new Plant({ commonName, thumbNail });
-                await newPlant.save();
+                const isPlantAdded = user.plant.some(plant => plant._id.equals(existingPlant._id));
+                if (isPlantAdded) {
+                    throw new Error('Plant already added to this user');
+                }
+
+
+                // if (existingPlant) {
+                //     const isPlantAdded = user.plant.some(plant => plant.commonName === commonName);
+                //     if (isPlantAdded) {
+                //         throw new Error('Plant already in database');
+                //     }
+                //     console.log('Plant already in database:', existingPlant);
+                //     return user;
+                // }
+
+
+
                 //maybe plant/plants is the issue
-                user.plant.push({ _id: newPlant._id, commonName, thumbNail });
+                user.plant.push({ _id: existingPlant._id, commonName, thumbNail });
                 await user.save();
                 await user.populate('plant');
                 console.log('Plant added to user:', user);
