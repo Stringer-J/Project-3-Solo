@@ -4,6 +4,7 @@ import SearchModal from './SearchModal.jsx';
 import { useMutation } from '@apollo/client';
 import { ADD_USER_PLANT_MUTATION } from '../../utils/mutations.js';
 import { AuthContext } from '../../utils/AuthContext.jsx';
+import noImage from '../../assets/no-image-found.webp';
 
 const Search = () => {
     const { user, updateUserPlants } = useContext(AuthContext);
@@ -108,7 +109,7 @@ const Search = () => {
                                 {plant.default_image?.thumbnail ? (
                                     <img src={plant.default_image.thumbnail} alt={plant.common_name} />
                                 ) : (
-                                    <p>No thumbnail available</p>
+                                    <img id='noImage' src={noImage} alt={plant.common_name} />
                                 )}
                                 <p>
                                     <button onClick={() => fetchPlantDetails(plant.id)}>
@@ -124,7 +125,9 @@ const Search = () => {
             <SearchModal isOpen={isModalOpen} onClose={closeModal} addPlant={handleAddPlant} commonName={plantDetails?.common_name || 'N/A'}>
                 {plantDetails && (
                     <div className='plantDetails'>
-                        <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />
+                        {plantDetails.default_image?.thumbnail ? (
+                            <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />
+                        ) : <img id='noImage' src={noImage} alt='No Image' />}
                         <p>Common Name: {plantDetails.common_name || 'N/A'}</p><hr />
                         <p>Scientific Name: {plantDetails.scientific_name?.[0] || 'N/A'}</p><hr />
                         <p>Other Names: {plantDetails.other_name?.[0] || 'N/A'}</p><hr />

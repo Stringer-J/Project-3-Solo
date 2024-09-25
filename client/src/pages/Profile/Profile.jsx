@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../utils/AuthContext';
 import './Profile.css';
+import noImage from '../../assets/no-image-found.webp';
 
 const Profile = () => {
     const { user, logout } = useContext(AuthContext);
@@ -20,7 +21,11 @@ const Profile = () => {
                     <p>Plants: {user.plant.length > 0 ? (
                         user.plant.map((plant) => (
                             <div key={plant._id}>
-                                <img src={plant.thumbNail} alt='No Image' />
+                            {plant.thumbNail ? (
+                            <img src={plant.thumbNail} alt='No image' />
+                        ) : <img id='noImage' src={noImage} alt='No Image' />}
+
+                                {/* <img src={plant.thumbNail} alt='No Image' /> */}
                                 <span>{plant.commonName}<br></br></span>
                             </div>
                         ))                       
