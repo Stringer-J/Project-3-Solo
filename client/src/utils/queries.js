@@ -7,7 +7,7 @@ export const GET_SINGLE_USER = gql`
             username
             email
             password
-            plants {
+            plant {
                 _id
                 commonName
             }

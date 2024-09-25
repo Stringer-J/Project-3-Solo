@@ -17,9 +17,9 @@ const Profile = () => {
                 <div>
                     <p>Username: {user.username}</p>
                     <p>Email: {user.email}</p>
-                    <p>Plants: {user.plants.length > 0 ? (
-                        user.plants.map((plant) => (
-                            <span key={plant._id}>{plant.name}<br></br></span>
+                    <p>Plants: {user.plant.length > 0 ? (
+                        user.plant.map((plant) => (
+                            <span key={plant._id}>{plant.commonName}<br></br></span>
                         ))                       
                     ) : (
                         <span>No plants added</span>

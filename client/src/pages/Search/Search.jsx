@@ -6,7 +6,7 @@ import { ADD_USER_PLANT_MUTATION } from '../../utils/mutations.js';
 import { AuthContext } from '../../utils/AuthContext.jsx';
 
 const Search = () => {
-    const { user } = useContext(AuthContext);
+    const { user, updateUserPlants } = useContext(AuthContext);
     console.log(user);
 
     const [plants, setPlants] = useState([]);
@@ -72,19 +72,35 @@ const Search = () => {
         setPlantDetails(null);
     };
 
-    const handleAddPlant = () => {
+    // const handleAddPlant = () => {
+    //     if (plantDetails && user) {
+    //         const commonName = plantDetails.common_name;
+    //         console.log('Adding plant:', commonName, 'for User:', user.email);
+    //         addPlant({ variables: { email: user.email, commonName }})
+    //             .then(response => {
+    //                 console.log('Mutation response:', response);
+    //             })
+    //             .catch(error => {
+    //                 console.error('Mutation error:', error.message);
+    //             });
+    //     }
+    // };
+
+    const handleAddPlant = async () => {
         if (plantDetails && user) {
             const commonName = plantDetails.common_name;
-            console.log('Adding plant:', commonName, 'for User:', user.email);
-            addPlant({ variables: { email: user.email, commonName }})
-                .then(response => {
-                    console.log('Mutation response:', response);
-                })
-                .catch(error => {
-                    console.error('Mutation error:', error.message);
-                });
+            try {
+                const { data } = await addPlant({ variables: { email: user.email, commonName } });
+                console.log('Mutation result:', data);
+
+                const updatedPlants = [...user.plant, { _id: data.addPlant.plant[data.addPlant.plant.length - 1]._id, commonName}];
+                updateUserPlants(updatedPlants);
+            } catch (error) {
+                console.error('Error calling addPlant:', error);
+            }
         }
     };
+
 
     return (
         <>
