@@ -1,7 +1,7 @@
 .homeBody {
     background-color: rgba(0, 128, 0, 0.186);
-    min-height: 90vh;
-    height: 84vh;
+    /* min-height: 90vh; */
+    height: 86vh;
     width: 100vw;
     overflow-x: hidden;
     display: flex;
@@ -10,12 +10,12 @@
 }
 
 .carousel {
-    height: 40vh;
+    height: 35vh;
     width: 100vw;
 }
 
 .carousel-item img {
-    height: 40vh;
+    height: 35vh;
     width: 90vw;
     object-fit: cover;
     border-bottom: solid black 3px;
@@ -23,14 +23,14 @@
 
 .aboutUsBox {
     width: 90vw;
-    height: 20vh;
+    height: 15vh;
     background-color: orange;
     margin-top: 1%;
 }
 
 .plantFinderBox {
     width: 90vw;
-    height: 30vh;
+    height: 20vh;
     background-color: plum;
     margin-top: 1%;
     margin-bottom: 1%;
