@@ -10,6 +10,7 @@ export const GET_SINGLE_USER = gql`
             plant {
                 _id
                 commonName
+                thumbNail
             }
         }
     }

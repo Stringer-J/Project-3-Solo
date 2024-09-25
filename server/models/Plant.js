@@ -7,6 +7,9 @@ const plantSchema = new Schema({
         type: String,
         required: true
     },
+    thumbNail: {
+        type: String
+    },
 });
 
 const Plant = mongoose.model('Plant', plantSchema);

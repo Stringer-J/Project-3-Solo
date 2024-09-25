@@ -20,6 +20,7 @@ export const ADD_USER_PLANT_MUTATION = gql`
             plant {
                 _id
                 commonName
+                thumbNail
             }
         }
     }

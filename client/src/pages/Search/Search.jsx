@@ -72,28 +72,17 @@ const Search = () => {
         setPlantDetails(null);
     };
 
-    // const handleAddPlant = () => {
-    //     if (plantDetails && user) {
-    //         const commonName = plantDetails.common_name;
-    //         console.log('Adding plant:', commonName, 'for User:', user.email);
-    //         addPlant({ variables: { email: user.email, commonName }})
-    //             .then(response => {
-    //                 console.log('Mutation response:', response);
-    //             })
-    //             .catch(error => {
-    //                 console.error('Mutation error:', error.message);
-    //             });
-    //     }
-    // };
-
     const handleAddPlant = async () => {
         if (plantDetails && user) {
+            console.log(plantDetails);
             const commonName = plantDetails.common_name;
+            const thumbNail = plantDetails.default_image?.thumbnail;
+            console.log(thumbNail);
             try {
-                const { data } = await addPlant({ variables: { email: user.email, commonName } });
+                const { data } = await addPlant({ variables: { email: user.email, commonName, thumbNail } });
                 console.log('Mutation result:', data);
 
-                const updatedPlants = [...user.plant, { _id: data.addPlant.plant[data.addPlant.plant.length - 1]._id, commonName}];
+                const updatedPlants = [...user.plant, { _id: data.addPlant.plant[data.addPlant.plant.length - 1]._id, commonName, thumbNail }];
                 updateUserPlants(updatedPlants);
             } catch (error) {
                 console.error('Error calling addPlant:', error);

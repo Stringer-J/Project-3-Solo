@@ -19,7 +19,10 @@ const Profile = () => {
                     <p>Email: {user.email}</p>
                     <p>Plants: {user.plant.length > 0 ? (
                         user.plant.map((plant) => (
-                            <span key={plant._id}>{plant.commonName}<br></br></span>
+                            <div key={plant._id}>
+                                <img src={plant.thumbNail} alt='No Image' />
+                                <span>{plant.commonName}<br></br></span>
+                            </div>
                         ))                       
                     ) : (
                         <span>No plants added</span>

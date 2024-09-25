@@ -19,7 +19,10 @@ const userSchema = new Schema({
         },
         commonName: {
             type: String
-        }
+        },
+        thumbNail: {
+            type: String
+        },
     }]
 });
 
