@@ -129,10 +129,22 @@ const Search = () => {
                 {successMessage && <p>{successMessage}</p>}
                 {plantDetails && (
                     <div className='plantDetails'>
-                        {plantDetails.default_image?.thumbnail ? (
-                            <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />
-                        ) : <img id='noImage' src={noImage} alt='No Image' />}
-                        <p>Common Name: {plantDetails.common_name || 'N/A'}</p><hr />
+                        <div className='imageTitle'>
+                            <div className='plantPic'>
+                                {plantDetails.default_image?.thumbnail ? (
+                                    <img src={plantDetails.default_image.thumbnail} alt={plantDetails.common_name} />
+                                ) : <img id='noImage' src={noImage} alt='No Image' />}
+                            </div>
+                            <div className='titleNames'>
+                                <h1>{plantDetails.common_name || 'N/A'}</h1>
+                                <h3>-{plantDetails.scientific_name?.[0] || 'N/A'}-</h3>
+                            </div>
+                        </div>
+                        <div className='infoBody'>
+                            
+                        </div>
+
+                        {/* <p>Common Name: {plantDetails.common_name || 'N/A'}</p><hr />
                         <p>Scientific Name: {plantDetails.scientific_name?.[0] || 'N/A'}</p><hr />
                         <p>Other Names: {plantDetails.other_name?.[0] || 'N/A'}</p><hr />
                         <p>Cycle: {plantDetails.cycle || 'N/A'}</p><hr />
@@ -166,7 +178,7 @@ const Search = () => {
                                 </ul>
                             ) : (
                                 <p>N/A</p>
-                            )}<hr />
+                            )}<hr /> */}
                     </div>   
                 )}
             </SearchModal>

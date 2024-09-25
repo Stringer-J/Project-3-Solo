@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Signup from './pages/Signup/Signup';

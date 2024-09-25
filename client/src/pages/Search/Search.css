@@ -8,3 +8,20 @@
     width: 200px;
     height: auto;
 }
+
+.imageTitle {
+    border-bottom: solid black 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.imageTitle img {
+    border-right: solid black 3px;
+}
+
+.infoBody {
+    background-color: bisque;
+    height: 100%;
+    position: relative;
+}
