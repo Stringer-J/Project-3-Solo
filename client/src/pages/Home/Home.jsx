@@ -121,9 +121,9 @@ const Home = () => {
             <div className='homeContent'>
             <div className='aboutUsBox'>
                  <h1>What To Do</h1><hr />
-                 <h2>Sign up if you are new and login if you already have an account!</h2><hr />
-                 <h2>From there, you'll be brought to your profile page. Click search and you'll be brought to a search page where you can see plant information and even add plants to your profile for quick reference!</h2><hr />
-                 <h2>Maybe one day this will be more fleshed out, who knows?</h2><br />
+                 <p>Sign up if you are new and login if you already have an account!</p><hr />
+                 <p>From there, you'll be brought to your profile page. Click search and you'll be brought to a search page where you can see plant information and even add plants to your profile for quick reference!</p><hr />
+                 <p>Maybe one day this will be more fleshed out, who knows?</p><br />
                  <h2>- Josh</h2>
 
             </div>
