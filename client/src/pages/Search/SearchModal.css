@@ -11,37 +11,44 @@
 }
 
 .content {
-    background: white;
+    /* background: lightcyan; */
     border-radius: 5px;
-    width: 40vw;
-    height: 80vh;
+    width: 50vw;
+    height: 60vh;
     position: relative;
+}
+
+.imageTitle h1, h3 {
+    margin-left: 5%;
 }
 
 .close-button {
     position: absolute;
-    /* padding: 7px; */
     top: 1%;
     right: 1%;
-    /* background: transparent; */
-    border: solid black 3px;
-    border-radius: 10px;
-    height: 6%;
-    width: 8%;
-    font-size: 18px;
+    border-radius: 5px;
+    color: aliceblue;
+    background-color: black;
+    height: 40px;
+    width: 80px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .add-button {
     position: absolute;
-    /* padding: 7px; */
-    top: 8%;
+    top: 1%;
     right: 1%;
-    /* background: transparent; */
-    border: solid black 3px;
-    border-radius: 10px;
-    height: 6%;
-    width: 8%;
-    font-size: 18px;
+    border-radius: 5px;
+    color: aliceblue;
+    background-color: black;
+    height: 40px;
+    width: 80px;
     cursor: pointer;
+    margin-left: 10px;
+}
+
+.close-button:hover, .add-button:hover {
+    color: black;
+    background-color: aliceblue;
 }

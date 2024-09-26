@@ -150,7 +150,7 @@ const Search = () => {
             </div>
 
             <SearchModal isOpen={isModalOpen} onClose={closeModal} addPlant={handleAddPlant} commonName={plantDetails?.common_name || 'N/A'}>
-                {successMessage && <p>{successMessage}</p>}
+                
                 {plantDetails && (
                     <div className='plantDetails'>
                         <div className='imageTitle'>
@@ -160,16 +160,11 @@ const Search = () => {
                                 ) : <img id='noImage' src={noImage} alt='No Image' />}
                             </div>
                             <div className='titleNames'>
-                                <h1>{plantDetails.common_name || 'N/A'}</h1>
-                                <h3>-{plantDetails.scientific_name?.[0] || 'N/A'}-</h3>
+                                <h1>{plantDetails.common_name || 'N/A'}</h1><hr />
+                                <h3>{plantDetails.scientific_name?.[0] || 'N/A'}</h3>
                             </div>
                         </div>
                         <div className='infoBody'>
-
-                        </div>
-
-                        {/* <p>Common Name: {plantDetails.common_name || 'N/A'}</p><hr />
-                        <p>Scientific Name: {plantDetails.scientific_name?.[0] || 'N/A'}</p><hr />
                         <p>Other Names: {plantDetails.other_name?.[0] || 'N/A'}</p><hr />
                         <p>Cycle: {plantDetails.cycle || 'N/A'}</p><hr />
                         <p>Watering: {plantDetails.watering || 'N/A'}</p><hr />
@@ -178,31 +173,10 @@ const Search = () => {
                         <p>Watering General Benchmark:</p>
                             <p>Unit: {plantDetails.watering_general_benchmark?.unit || 'N/A'}</p>
                             <p>Value: {plantDetails.watering_general_benchmark?.value || 'N/A'}</p><hr />
-                        <p>Plant Anatomy:</p>
-                            {plantDetails.plant_anatomy?.length > 0 ? (
-                                <ul>
-                                    {plantDetails.plant_anatomy?.map((anatomy, index) => (
-                                        <li key={index}>
-                                            {anatomy.part}: {anatomy.color.join(', ') || 'N/A'}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p>N/A</p>
-                            )}<hr />
-                        <p>Sunlight: {plantDetails.sunlight?.[0] || 'N/A'}</p><hr />
-                        <p>Pruning Months: {plantDetails.pruning_month?.[0] || 'N/A'}</p> 
-                            {plantDetails.pruning_month && plantDetails.pruning_month.length > 0 ? (
-                                <ul>
-                                    {plantDetails.pruning_month.map((month, index) => (
-                                        <li key={index}>
-                                            {month || 'N/A'}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p>N/A</p>
-                            )}<hr /> */}
+                        <p>Sunlight: {plantDetails.sunlight?.[0] || 'N/A'}</p>
+                        {successMessage && <h4>{successMessage}</h4>}
+                        </div>
+                        
                     </div>   
                 )}
             </SearchModal>

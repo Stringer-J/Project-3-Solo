@@ -54,11 +54,21 @@
     height: auto;
 }
 
+.plantDetails {
+    background-color: white;
+    position: relative;
+    width: 100%;
+    border: solid black 3px;
+}
+
 .imageTitle {
+    background-color: lightblue;
     border-bottom: solid black 3px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .imageTitle img {
@@ -66,9 +76,10 @@
 }
 
 .infoBody {
-    background-color: bisque;
     height: 100%;
     position: relative;
+    text-align: center;
+    margin-top: 2%;
 }
 
 ul {
@@ -123,4 +134,8 @@ ul img {
     border-right: solid black 3px;
     margin-right: 10px;
     margin-bottom: 10px;
+}
+
+h4 {
+    background-color: greenyellow;
 }
