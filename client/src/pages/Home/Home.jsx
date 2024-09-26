@@ -135,7 +135,7 @@ const Home = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required placeholder='Enter your Username'
-            /><br />
+            />
 
             <label htmlFor='email'>Email:</label>
             <input
@@ -145,7 +145,7 @@ const Home = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required placeholder='Enter your Email'
-            /><br />
+            />
 
             <label htmlFor='password'>Password:</label>
             <input
@@ -155,7 +155,7 @@ const Home = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required placeholder='Enter your Password'
-            /><br />
+            />
 
             <button id='signUpButton' type='submit' disabled={loading}>
                 {loading ? 'Submitting...' : 'Sign Up'}
@@ -175,7 +175,7 @@ const Home = () => {
                 value={formDataLogin.email}
                 onChange={handleChangeLogin}
                 required placeholder='Enter your Email'
-            /><br />
+            />
 
             <label htmlFor='password'>Password:</label>
             <input
@@ -185,7 +185,7 @@ const Home = () => {
                 value={formDataLogin.password}
                 onChange={handleChangeLogin}
                 required placeholder='Enter your Password'
-            /><br />
+            />
 
             <button id='loginButton' type='submit' disabled={loading}>
                 {loading ? 'Submitting...' : 'Login'}
