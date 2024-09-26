@@ -21,16 +21,6 @@ function App() {
           <h1>Leafy Dreams</h1>
         </div>
 
-        <div className='buttonBox'>
-          <Link to="/">
-            <button>Home</button>
-          </Link>
-
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>
-        </div>
-
 
 
       </div>
@@ -41,7 +31,15 @@ function App() {
 
           <Route path="/search" element={<Search />} />
         </Routes>
-      <div className='footer'></div>
+      <div className='footer'>
+      <Link to="/">
+            <button>Home</button>
+          </Link>
+
+          <Link to="/profile">
+            <button>Profile</button>
+          </Link>
+      </div>
     </Router>
     </ApolloProvider>
     </>

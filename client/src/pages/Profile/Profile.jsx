@@ -5,11 +5,12 @@ import noImage from '../../assets/no-image-found.webp';
 import SearchModal from '../Search/SearchModal';
 import { DELETE_USER_PLANT_MUTATION } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
     const { user, logout, updateUserPlants } = useContext(AuthContext);
     const [deletePlant] = useMutation(DELETE_USER_PLANT_MUTATION);
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -18,6 +19,7 @@ const Profile = () => {
 
     const handleLogout = () => {
         logout();
+        navigate('/');
     };
 
     const fetchPlantDetails = async (commonName) => {
@@ -94,6 +96,7 @@ const Profile = () => {
                             <Link to="/search">
             <button>Search</button>
           </Link>
+                      <button onClick={handleLogout}>Logout</button>
                         </div>
                         <div className='plantList'>
                         <p><br /> {user.plant.length > 0 ? (
@@ -124,7 +127,7 @@ const Profile = () => {
             </div>
             
 
-            {/* <button onClick={handleLogout}>Logout</button> */}
+
 
             <SearchModal isOpen={isModalOpen} onClose={closeModal} commonName={plantDetails?.common_name || 'N/A'}>
                 {plantDetails && (
