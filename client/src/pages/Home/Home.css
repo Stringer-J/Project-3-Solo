@@ -21,17 +21,34 @@
     border-bottom: solid black 3px;
 }
 
+.homeContent {
+    display: flex;
+    flex-direction: row;
+}
+
 .aboutUsBox {
-    width: 90vw;
+    width: 30vw;
     height: 15vh;
     background-color: orange;
     margin-top: 1%;
+    margin-right: 3%;
 }
 
 .plantFinderBox {
-    width: 90vw;
-    height: 20vh;
+    display: flex;
+    width: 60vw;
+    height: 40vh;
     background-color: plum;
     margin-top: 1%;
     margin-bottom: 1%;
+}
+
+.signupBox {
+    background-color: red;
+    flex: 1;
+}
+
+.loginBox {
+    background-color: blue;
+    flex: 1;
 }
