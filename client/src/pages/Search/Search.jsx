@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER_PLANT_MUTATION } from '../../utils/mutations.js';
 import { AuthContext } from '../../utils/AuthContext.jsx';
 import noImage from '../../assets/no-image-found.webp';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
     const { user, updateUserPlants } = useContext(AuthContext);
@@ -95,7 +96,7 @@ const Search = () => {
                     throw new Error('Response was not okay');
                 }
                 const data = await response.json();
-                setPlants(data.data.slice(0, 24));
+                setPlants(data.data.slice(0, 30));
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -116,6 +117,9 @@ const Search = () => {
             <div className='searchBarTop'>
                 <h1>Search</h1>
                 <input type='text' value={searchTerm} onChange={handleSearchChange} placeholder='Search for plants here!' />
+                <Link to="/profile">
+            <button>Profile</button>
+          </Link>
                 {error && <p>Error: {error}</p>}
             </div>
 
@@ -126,13 +130,15 @@ const Search = () => {
                         {plants.map((plant) => (
                             <li key={plant.id}>
                                 <div className='singleItem'>
+                                <p>
+                                <button className='plantLink' onClick={() => fetchPlantDetails(plant.id)}>
                                 {plant.default_image?.thumbnail ? (
                                     <img src={plant.default_image.thumbnail} alt={plant.common_name} />
                                 ) : (
                                     <img id='noImage' src={noImage} alt={plant.common_name} />
                                 )}
-                                <p>
-                                    <button id='plantLink' onClick={() => fetchPlantDetails(plant.id)}>
+                                
+                                    
                                         {plant.common_name || 'No search results'}
                                     </button>
                                 </p>

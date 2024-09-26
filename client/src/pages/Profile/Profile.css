@@ -6,7 +6,7 @@
 }
 
 .userDiv {
-    background-color: rgba(0, 128, 0, 0.186);
+    background-color: lightgoldenrodyellow;
     height: 86vh;
     width: 100vw;
     display: flex;
@@ -89,7 +89,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
 }
 
 .plantItem button:hover {
@@ -98,13 +97,12 @@
 }
 
 .plantItem img {
-    max-width: 75px; /* Adjust as needed */
-    max-height: 75px; /* Adjust as needed */
-    width: auto; /* Maintain aspect ratio */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensures the image scales within its box */
+    max-width: 75px;
+    max-height: 75px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     border-right: solid black 3px;
     margin-right: 10px;
-
 }
 

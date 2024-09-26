@@ -31,15 +31,7 @@ function App() {
 
           <Route path="/search" element={<Search />} />
         </Routes>
-      <div className='footer'>
-      <Link to="/">
-            <button>Home</button>
-          </Link>
-
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>
-      </div>
+      <div className='footer'></div>
     </Router>
     </ApolloProvider>
     </>

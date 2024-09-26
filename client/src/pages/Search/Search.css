@@ -1,17 +1,52 @@
 .searchBody {
-    background-color: grey;
+    background-color: lightblue;
     height: 86vh;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .searchBarTop {
-    background-color: red;
+    background-color: lightcoral;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-bottom: solid black 3px;
+    /* margin-bottom: 15px; */
+}
+
+.searchBarTop h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.searchBarTop input {
+    height: 80%; 
+    padding: 5px; 
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+.searchBarTop button {
+    border-radius: 5px;
+    color: aliceblue;
+    background-color: black;
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.searchBarTop button:hover {
+    color: black;
+    background-color: aliceblue;
 }
 
 .searchResults {
-    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
 }
 
 #noImage {
@@ -40,6 +75,7 @@ ul {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
 ul img {
@@ -48,6 +84,7 @@ ul img {
     margin-right: 10px;
     border: black solid 3px;
     border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .singleItem {
@@ -56,7 +93,34 @@ ul img {
     align-items: center;
 }
 
-#plantLink {
-    width: 100%;
-    display: block;
+.plantLink {
+    background-color: lightseagreen;
+    color: white;
+    /* margin: 5px; */
+    border: solid black 3px;
+    border-radius: 5px;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-right: 18px;
+    margin-left: 18px;
+    padding: 0;
+}
+
+.plantLink:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+.plantLink img {
+    max-width: 275px;
+    max-height: 275px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-right: solid black 3px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
