@@ -20,11 +20,14 @@ export const AuthProvider = ({ children }) => {
     };
 
     const updateUserPlants = (newPlants) => {
-        setUser((prevUser) => ({
-            ...prevUser,
-            plant: newPlants,
-        }));
-        localStorage.setItem('user', JSON.stringify({ ...user, plant: newPlants }));
+        setUser((prevUser) => {
+            const updatedUser = {
+                ...prevUser,
+                plant: newPlants,
+            };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            return updatedUser;
+        });
     };
 
     useEffect(() => {

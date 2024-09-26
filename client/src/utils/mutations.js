@@ -18,9 +18,9 @@ export const ADD_USER_PLANT_MUTATION = gql`
             email
             password
             plant {
-                _id
                 commonName
                 thumbNail
+                _id
             }
         }
     }

@@ -8,9 +8,9 @@ export const GET_SINGLE_USER = gql`
             email
             password
             plant {
-                _id
                 commonName
                 thumbNail
+                _id
             }
         }
     }

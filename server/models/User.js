@@ -4,19 +4,18 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     username: {
-        type: String
+        type: String,
+        required: true
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     plant: [{
-        _id: {
-            type: Schema.Types.ObjectId,
-            ref: 'Plant',
-        },
         commonName: {
             type: String
         },

@@ -33,11 +33,15 @@ const Home = () => {
             </div>
             <div className='aboutUsBox'>
                  {/* about us info would go here */}
-                 <h1>About Us Info</h1>
+                 <h1>How to use site: login or sign up to search</h1>
             </div>
             <div className='plantFinderBox'>
-                 {/* about us info would go here */}
-                 <h1>Info about Plant Finder/link to Plant Finder</h1>
+                <div className='singupBox'>
+
+                </div>
+                <div className='loginBox'>
+                    
+                </div>
             </div>
         </div>
         </>

@@ -6,32 +6,31 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        plant: [Plant]
+        plant: [PlantInfo]
     }
 
-    type Plant {
-        _id: ID
-        commonName: String!
+    type PlantInfo {
+        commonName: String
         thumbNail: String
+        _id: ID
     }
 
     type Query {
         getAllUsers: [User]
         getUser(email: String!): User
-        getUserPlants(email: String!): [Plant]
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): User
         updateUser(_id: ID!, username: String, email: String, password: String): User
         addPlant(email: String!, commonName: String!, thumbNail: String): User
-        deletePlant(email: String!, plantId: ID!): DeletePlantResponse!
+        deletePlant(email: String!, plantId: ID!): DeleteResponse
     }
 
-    type DeletePlantResponse {
-        success: Boolean!
+    type DeleteResponse {
+        success: Boolean
         message: String
-    }   
+    }
 `;
 
 module.exports = typeDefs;

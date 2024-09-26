@@ -68,7 +68,7 @@ const Search = () => {
                 setSuccessMessage('Plant added successfully!');
                 console.log('Mutation result:', data);
 
-                const updatedPlants = [...user.plant, { _id: data.addPlant.plant[data.addPlant.plant.length - 1]._id, commonName, thumbNail }];
+                const updatedPlants = data.addPlant.plant;
                 updateUserPlants(updatedPlants);
             } catch (error) {
                 console.error('Error calling addPlant:', error);

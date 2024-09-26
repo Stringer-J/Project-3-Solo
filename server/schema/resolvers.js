@@ -15,7 +15,6 @@ const resolvers = {
         getUser: async (_, { email }) => {
             try {
                 const user = await User.findOne({ email })
-                    .populate('plant');
 
                 console.log(user);
 
@@ -29,9 +28,9 @@ const resolvers = {
                     email: user.email,
                     password: user.password,
                     plant: user.plant.map(plant => ({
-                        _id: plant._id,
                         commonName: plant.commonName,
-                        thumbNail: plant.thumbNail
+                        thumbNail: plant.thumbNail,
+                        _id: plant._id
                     }))
                 };
             } catch (error) {
@@ -39,10 +38,10 @@ const resolvers = {
             }
         },
 
-        getUserPlants: async (_, { email }) => {
-            const user = await User.findOne({ email }).populate('plant');
-            return user ? user.plant : [];
-        },
+        // getUserPlants: async (_, { email }) => {
+        //     const user = await User.findOne({ email }).populate('plant');
+        //     return user ? user.plant : [];
+        // },
     },
 
     Mutation: {
@@ -99,18 +98,12 @@ const resolvers = {
                 if (!user) {
                     throw new Error('User not found');
                 }
-                let existingPlant = await Plant.findOne({ commonName });
-                if (!existingPlant) {
-                    existingPlant = new Plant({ commonName, thumbNail });
-                    await existingPlant.save();
-                }
-                const isPlantAdded = user.plant.some(plant => plant._id.equals(existingPlant._id));
+                const isPlantAdded = user.plant.some(plant => plant.commonName === commonName);
                 if (isPlantAdded) {
                     throw new Error('Plant already added to this user');
                 }
-                user.plant.push({ _id: existingPlant._id, commonName, thumbNail });
+                user.plant.push({ commonName, thumbNail });
                 await user.save();
-                await user.populate('plant');
                 console.log('Plant added to user:', user);
                 return user;
             } catch (error) {

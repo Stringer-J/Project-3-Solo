@@ -60,9 +60,8 @@ const Profile = () => {
     };
 
     const handleRemovePlant = async (plantId) => {
-        console.log(user);
+        console.log(user.email);
         console.log(plantId);
-        console.log(typeof plantId);
         try {
             const { data } = await deletePlant({ variables: { email: user.email, plantId }});
             console.log(data);
@@ -73,7 +72,8 @@ const Profile = () => {
                 console.error(data.deletePlant.message);
             }
         } catch (error) {
-            console.error('Error removing plant:', error);
+            console.error('Error removing plant:', error.message);
+            console.error('Full error details:', error);
         }
     };
 
