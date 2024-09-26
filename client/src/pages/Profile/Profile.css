@@ -1,5 +1,91 @@
 .profileBody {
+
+    height: 86vh;
+    width: 100vw;
+
+}
+
+.userDiv {
     background-color: aquamarine;
     height: 86vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
     overflow-x: hidden;
+}
+
+.profileBox {
+    background-color: orange;
+    flex: 1;
+    margin-right: 2%;
+    margin-left: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: solid black 3px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.plantBox {
+    background-color: yellow;
+    flex: 1;
+    margin-right: 10%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: solid black 3px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.plantBox h1 {
+    text-align: center;
+}
+
+.plantBox hr {
+    margin-bottom: 0;
+    height: 3px;
+    background-color: black;
+}
+
+.plantTitle {
+    border-bottom: solid black 3px;
+}
+
+.plantList {
+    overflow-y: auto;
+    max-height: 90%;
+}
+
+.plantItem {
+    margin-bottom: -20px;
+}
+
+.plantItem button {
+    background-color: green;
+    color: white;
+    margin: 5px;
+    border: solid black 3px;
+    border-radius: 5px;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.plantItem button:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+.plantItem img {
+    max-width: 75px; /* Adjust as needed */
+    max-height: 75px; /* Adjust as needed */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image scales within its box */
+    border-right: solid black 3px;
+    margin-right: 10px;
+
 }

@@ -80,14 +80,21 @@ const Profile = () => {
     return (
         <>
             <div className="profileBody">
-            <h1>Profile</h1>
             {user ? (
-                <div>
-                    <p>Username: {user.username}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Plants:<br /> {user.plant.length > 0 ? (
+                
+                <div className='userDiv'>
+                    <div className='profileBox'>
+                        <p>Username: {user.username}</p>
+                        <p>Email: {user.email}</p>
+                    </div>
+                    <div className='plantBox'>
+                        <div className='plantTitle'>
+                            <h1>Plants</h1>
+                        </div>
+                        <div className='plantList'>
+                        <p><br /> {user.plant.length > 0 ? (
                         user.plant.map((plant) => (
-                            <div key={plant._id}>
+                            <div key={plant._id} className='plantItem'>
                             <button onClick={() => fetchPlantDetails(plant.commonName)}>
                             <div>
                             {plant.thumbNail ? (
@@ -96,19 +103,24 @@ const Profile = () => {
                                 <span>{plant.commonName}<br></br></span>
                             </div>
                             </button>
-                            <button onClick={() => handleRemovePlant(plant._id)}>Delete</button>
                             <br />
                             </div>
                         ))                       
                     ) : (
                         <span>No plants added</span>
                     )}</p>
+                        </div>
+
+                    </div>
                 </div>
             ) : (
                 <p>No user data available</p>
             )}
-            <button onClick={handleLogout}>Logout</button>
+            
             </div>
+            
+
+            {/* <button onClick={handleLogout}>Logout</button> */}
 
             <SearchModal isOpen={isModalOpen} onClose={closeModal} commonName={plantDetails?.common_name || 'N/A'}>
                 {plantDetails && (
