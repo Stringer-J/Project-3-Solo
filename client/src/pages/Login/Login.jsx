@@ -6,22 +6,22 @@ import { AuthContext } from '../../utils/AuthContext.jsx';
 import './Login.css';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
+    const [formDataLogin, setFormDataLogin] = useState({
         email: '',
         password: ''
     });
 
     const { data, loading, error } = useQuery(GET_SINGLE_USER, {
-        variables: { email: formData.email },
-        skip: !formData.email
+        variables: { email: formDataLogin.email },
+        skip: !formDataLogin.email
     });
 
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
+    const handleChangeLogin = (e) => {
         const { name, value } = e.target;
-        setFormData((oldData) => {
+        setFormDataLogin((oldData) => {
             const updatedData = {
                 ...oldData,
                 [name]: value
@@ -31,9 +31,9 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        console.log('Login Form Data:', formData);
+        console.log('Login Form Data:', formDataLogin);
         try {
             if (data && data.getUser) {
                 console.log('User found:', data.getUser);
@@ -50,14 +50,14 @@ const Login = () => {
     return (
         <div className='loginBody'>
             <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitLogin}>
             <label htmlFor='email'>Email:</label>
             <input
                 type='text'
                 id='email'
                 name='email'
-                value={formData.email}
-                onChange={handleChange}
+                value={formDataLogin.email}
+                onChange={handleChangeLogin}
                 required placeholder='Enter your Email'
             /><br /><br />
 
@@ -66,8 +66,8 @@ const Login = () => {
                 type='password'
                 id='password'
                 name='password'
-                value={formData.password}
-                onChange={handleChange}
+                value={formDataLogin.password}
+                onChange={handleChangeLogin}
                 required placeholder='Enter your Password'
             /><br /><br />
 

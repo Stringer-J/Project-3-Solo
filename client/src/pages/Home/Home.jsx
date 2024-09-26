@@ -1,3 +1,10 @@
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_USER_MUTATION } from '../../utils/mutations';
+import { GET_SINGLE_USER } from '../../utils/queries';
+import { AuthContext } from '../../utils/AuthContext';
+import { client } from '../../App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Home.css';
@@ -6,6 +13,86 @@ import plantPic2 from '../../assets/plantpic2.webp';
 import plantPic3 from '../../assets/plantpic3.webp';
 
 const Home = () => {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
+
+    const [addUser, { loading, error }] = useMutation(ADD_USER_MUTATION);
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
+    //tested state with a console log, turns out it updates with every single keystroke
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((oldData) => {
+            const updatedData = {
+                ...oldData,
+                [name]: value
+            };
+            // console.log('Updated State:', updatedData);
+            return updatedData;
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Signup Form Data:', formData);
+        try {
+            const { data: addUserData } = await addUser({ variables: {...formData} });
+            console.log('User created:', addUserData.addUser);
+
+            const { data: userData } = await client.query({
+                query: GET_SINGLE_USER,
+                variables: { email: formData.email },
+            });
+
+            login(userData.getUser);
+            navigate('/profile');
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
+    };
+
+    const [formDataLogin, setFormDataLogin] = useState({
+        email: '',
+        password: ''
+    });
+
+    const { data } = useQuery(GET_SINGLE_USER, {
+        variables: { email: formDataLogin.email },
+        skip: !formDataLogin.email
+    });
+
+    const handleChangeLogin = (e) => {
+        const { name, value } = e.target;
+        setFormDataLogin((oldData) => {
+            const updatedData = {
+                ...oldData,
+                [name]: value
+            };
+            // console.log('Updated State:', updatedData);
+            return updatedData;
+        });
+    };
+
+    const handleSubmitLogin = async (e) => {
+        e.preventDefault();
+        console.log('Login Form Data:', formDataLogin);
+        try {
+            if (data && data.getUser) {
+                console.log('User found:', data.getUser);
+                login(data.getUser);
+                navigate('/profile', { state: { userData: data.getUser }});
+            } else {
+                console.log('Email not found');
+            }
+        } catch (error) {
+            console.error('Error finding user:', error);
+        }
+    };
+
     return (
         <>
         <div className='homeBody'>
@@ -37,10 +124,68 @@ const Home = () => {
             </div>
             <div className='plantFinderBox'>
                 <div className='signupBox'>
+                <form id='signUpForm' onSubmit={handleSubmit}>
+            <label htmlFor='username'>Username:</label>
+            <input
+                type='text'
+                id='username'
+                name='username'
+                value={formData.username}
+                onChange={handleChange}
+                required placeholder='Enter your Username'
+            /><br /><br />
 
+            <label htmlFor='email'>Email:</label>
+            <input
+                type='text'
+                id='email'
+                name='email'
+                value={formData.email}
+                onChange={handleChange}
+                required placeholder='Enter your Email'
+            /><br /><br />
+
+            <label htmlFor='password'>Password:</label>
+            <input
+                type='password'
+                id='password'
+                name='password'
+                value={formData.password}
+                onChange={handleChange}
+                required placeholder='Enter your Password'
+            /><br /><br />
+
+            <button type='submit' disabled={loading}>
+                {loading ? 'Submitting...' : 'Sign Up'}
+            </button>
+            </form>
                 </div>
                 <div className='loginBox'>
-                    
+                <form id='loginForm' onSubmit={handleSubmitLogin}>
+            <label htmlFor='email'>Email:</label>
+            <input
+                type='text'
+                id='email'
+                name='email'
+                value={formDataLogin.email}
+                onChange={handleChangeLogin}
+                required placeholder='Enter your Email'
+            /><br /><br />
+
+            <label htmlFor='password'>Password:</label>
+            <input
+                type='password'
+                id='password'
+                name='password'
+                value={formDataLogin.password}
+                onChange={handleChangeLogin}
+                required placeholder='Enter your Password'
+            /><br /><br />
+
+            <button type='submit' disabled={loading}>
+                {loading ? 'Submitting...' : 'Login'}
+            </button>
+        </form>
                 </div>
             </div>
             </div>
