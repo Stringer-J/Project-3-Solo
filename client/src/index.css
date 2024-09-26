@@ -50,9 +50,15 @@
 .footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   border-top: solid black 3px;
   height: 6vh;
   width: 100vw;
   margin-top: auto;
+}
+
+.footer h6 {
+  /* margin-left: 15%;
+  margin-right: 15%; */
 }

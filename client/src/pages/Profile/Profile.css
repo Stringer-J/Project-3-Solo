@@ -6,7 +6,7 @@
 }
 
 .userDiv {
-    background-color: aquamarine;
+    background-color: rgba(0, 128, 0, 0.186);
     height: 86vh;
     width: 100vw;
     display: flex;
@@ -27,7 +27,7 @@
 }
 
 .plantBox {
-    background-color: yellow;
+    background-color: plum;
     flex: 1;
     margin-right: 10%;
     margin-left: 2%;
@@ -50,6 +50,23 @@
 
 .plantTitle {
     border-bottom: solid black 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plantTitle button {
+    border-radius: 5px;
+    color: aliceblue;
+    background-color: black;
+    height: 40px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.plantTitle button:hover {
+    color: black;
+    background-color: aliceblue;
 }
 
 .plantList {
@@ -89,3 +106,4 @@
     margin-right: 10px;
 
 }
+

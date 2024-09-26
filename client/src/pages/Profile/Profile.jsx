@@ -5,6 +5,7 @@ import noImage from '../../assets/no-image-found.webp';
 import SearchModal from '../Search/SearchModal';
 import { DELETE_USER_PLANT_MUTATION } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const { user, logout, updateUserPlants } = useContext(AuthContext);
@@ -84,12 +85,15 @@ const Profile = () => {
                 
                 <div className='userDiv'>
                     <div className='profileBox'>
-                        <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p>
+                        {/* <p>Username: {user.username}</p>
+                        <p>Email: {user.email}</p> */}
                     </div>
                     <div className='plantBox'>
                         <div className='plantTitle'>
                             <h1>Plants</h1>
+                            <Link to="/search">
+            <button>Search</button>
+          </Link>
                         </div>
                         <div className='plantList'>
                         <p><br /> {user.plant.length > 0 ? (
