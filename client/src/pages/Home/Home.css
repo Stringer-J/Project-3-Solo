@@ -33,6 +33,10 @@
     margin-top: 1%;
     margin-right: 3%;
     margin-left: 3%;
+    text-align: center;
+    border: solid black 3px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .plantFinderBox {
