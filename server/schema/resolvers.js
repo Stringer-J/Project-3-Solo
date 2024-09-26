@@ -108,20 +108,6 @@ const resolvers = {
                 if (isPlantAdded) {
                     throw new Error('Plant already added to this user');
                 }
-
-
-                // if (existingPlant) {
-                //     const isPlantAdded = user.plant.some(plant => plant.commonName === commonName);
-                //     if (isPlantAdded) {
-                //         throw new Error('Plant already in database');
-                //     }
-                //     console.log('Plant already in database:', existingPlant);
-                //     return user;
-                // }
-
-
-
-                //maybe plant/plants is the issue
                 user.plant.push({ _id: existingPlant._id, commonName, thumbNail });
                 await user.save();
                 await user.populate('plant');
@@ -129,6 +115,25 @@ const resolvers = {
                 return user;
             } catch (error) {
                 console.error('Error in addPlant:', error.message);
+                throw new Error(error.message);
+            }
+        },
+
+        deletePlant: async (_, { email, plantId }) => {
+            try {
+                const user = await User.findOne({ email });
+                if (!user) {
+                    throw new Error('User not found');
+                }
+                const plantExists = user.plant.some(plant => plant._id.equals(plantId));
+                if (!plantExists) {
+                    throw new Error('Plant not found');
+                }
+                user.plant = user.plant.filter(plant => !plant._id.equals(plantId));
+                await user.save();
+                return { success: true, message: 'Plant removed!'};
+            } catch (error) {
+                console.error('Error with deletePlant:', error.message);
                 throw new Error(error.message);
             }
         },

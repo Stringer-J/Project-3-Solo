@@ -3,9 +3,12 @@ import { AuthContext } from '../../utils/AuthContext';
 import './Profile.css';
 import noImage from '../../assets/no-image-found.webp';
 import SearchModal from '../Search/SearchModal';
+import { DELETE_USER_PLANT_MUTATION } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const Profile = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, updateUserPlants } = useContext(AuthContext);
+    const [deletePlant] = useMutation(DELETE_USER_PLANT_MUTATION);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -56,6 +59,24 @@ const Profile = () => {
         setPlantDetails(null);
     };
 
+    const handleRemovePlant = async (plantId) => {
+        console.log(user);
+        console.log(plantId);
+        console.log(typeof plantId);
+        try {
+            const { data } = await deletePlant({ variables: { email: user.email, plantId }});
+            console.log(data);
+            if (data.deletePlant.success) {
+                const updatedPlants = user.plant.filter(plant => plant._id !== plantId);
+                updateUserPlants(updatedPlants);
+            } else {
+                console.error(data.deletePlant.message);
+            }
+        } catch (error) {
+            console.error('Error removing plant:', error);
+        }
+    };
+
     return (
         <>
             <div className="profileBody">
@@ -75,6 +96,7 @@ const Profile = () => {
                                 <span>{plant.commonName}<br></br></span>
                             </div>
                             </button>
+                            <button onClick={() => handleRemovePlant(plant._id)}>Delete</button>
                             <br />
                             </div>
                         ))                       

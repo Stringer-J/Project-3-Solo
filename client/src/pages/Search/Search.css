@@ -4,8 +4,18 @@
     overflow-x: hidden;
 }
 
+.searchBarTop {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.searchResults {
+    /* background-color: blueviolet; */
+}
+
 #noImage {
-    width: 200px;
+    width: 206px;
     height: auto;
 }
 
@@ -24,4 +34,29 @@
     background-color: bisque;
     height: 100%;
     position: relative;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul img {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: black solid 3px;
+    border-radius: 5px;
+}
+
+.singleItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#plantLink {
+    width: 100%;
+    display: block;
 }
