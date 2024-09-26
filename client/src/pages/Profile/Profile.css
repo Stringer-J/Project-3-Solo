@@ -24,6 +24,10 @@
     border: solid black 3px;
     border-radius: 10px;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .plantBox {
@@ -55,7 +59,7 @@
     align-items: center;
 }
 
-.plantTitle button {
+.plantTitle button, .profileBox button {
     border-radius: 5px;
     color: aliceblue;
     background-color: black;
@@ -64,7 +68,7 @@
     cursor: pointer;
 }
 
-.plantTitle button:hover {
+.plantTitle button:hover, .profileBox button:hover {
     color: black;
     background-color: aliceblue;
 }

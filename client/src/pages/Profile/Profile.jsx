@@ -66,8 +66,10 @@ const Profile = () => {
                 
                 <div className='userDiv'>
                     <div className='profileBox'>
-                        {/* <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p> */}
+                        <h1>Username: {user.username}</h1>
+                        <h1>Email: {user.email}</h1><hr />
+                        <h3>Maybe one day profile info will be here, but not today, but hey at least orange is a nice color</h3>
+                        <button onClick={handleLogout}>Logout</button>
                     </div>
                     <div className='plantBox'>
                         <div className='plantTitle'>
@@ -75,7 +77,6 @@ const Profile = () => {
                             <Link to="/search">
             <button>Search</button>
           </Link>
-                      <button onClick={handleLogout}>Logout</button>
                         </div>
                         <div className='plantList'>
                         <p><br /> {user.plant.length > 0 ? (
