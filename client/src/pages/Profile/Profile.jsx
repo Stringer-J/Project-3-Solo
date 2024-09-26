@@ -3,13 +3,10 @@ import { AuthContext } from '../../utils/AuthContext';
 import './Profile.css';
 import noImage from '../../assets/no-image-found.webp';
 import SearchModal from '../Search/SearchModal';
-import { DELETE_USER_PLANT_MUTATION } from '../../utils/mutations';
-import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
     const { user, logout, updateUserPlants } = useContext(AuthContext);
-    const [deletePlant] = useMutation(DELETE_USER_PLANT_MUTATION);
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
@@ -60,24 +57,6 @@ const Profile = () => {
     const closeModal = () => {
         setIsModalOpen(false);
         setPlantDetails(null);
-    };
-
-    const handleRemovePlant = async (plantId) => {
-        console.log(user.email);
-        console.log(plantId);
-        try {
-            const { data } = await deletePlant({ variables: { email: user.email, plantId }});
-            console.log(data);
-            if (data.deletePlant.success) {
-                const updatedPlants = user.plant.filter(plant => plant._id !== plantId);
-                updateUserPlants(updatedPlants);
-            } else {
-                console.error(data.deletePlant.message);
-            }
-        } catch (error) {
-            console.error('Error removing plant:', error.message);
-            console.error('Full error details:', error);
-        }
     };
 
     return (

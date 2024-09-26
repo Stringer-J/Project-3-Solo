@@ -24,12 +24,6 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): User
         updateUser(_id: ID!, username: String, email: String, password: String): User
         addPlant(email: String!, commonName: String!, thumbNail: String): User
-        deletePlant(email: String!, plantId: ID!): DeleteResponse
-    }
-
-    type DeleteResponse {
-        success: Boolean
-        message: String
     }
 `;
 
