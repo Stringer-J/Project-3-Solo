@@ -124,6 +124,8 @@ const Home = () => {
             </div>
             <div className='plantFinderBox'>
                 <div className='signupBox'>
+                    <div id='signUpFormTitle'>
+                    <h1>SIGN UP</h1>
                 <form id='signUpForm' onSubmit={handleSubmit}>
             <label htmlFor='username'>Username:</label>
             <input
@@ -133,7 +135,7 @@ const Home = () => {
                 value={formData.username}
                 onChange={handleChange}
                 required placeholder='Enter your Username'
-            /><br /><br />
+            /><br />
 
             <label htmlFor='email'>Email:</label>
             <input
@@ -143,7 +145,7 @@ const Home = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required placeholder='Enter your Email'
-            /><br /><br />
+            /><br />
 
             <label htmlFor='password'>Password:</label>
             <input
@@ -153,14 +155,17 @@ const Home = () => {
                 value={formData.password}
                 onChange={handleChange}
                 required placeholder='Enter your Password'
-            /><br /><br />
+            /><br />
 
-            <button type='submit' disabled={loading}>
+            <button id='signUpButton' type='submit' disabled={loading}>
                 {loading ? 'Submitting...' : 'Sign Up'}
             </button>
             </form>
                 </div>
+                </div>
                 <div className='loginBox'>
+                <div id='loginFormTitle'>
+                <h1>LOGIN</h1>
                 <form id='loginForm' onSubmit={handleSubmitLogin}>
             <label htmlFor='email'>Email:</label>
             <input
@@ -170,7 +175,7 @@ const Home = () => {
                 value={formDataLogin.email}
                 onChange={handleChangeLogin}
                 required placeholder='Enter your Email'
-            /><br /><br />
+            /><br />
 
             <label htmlFor='password'>Password:</label>
             <input
@@ -180,12 +185,13 @@ const Home = () => {
                 value={formDataLogin.password}
                 onChange={handleChangeLogin}
                 required placeholder='Enter your Password'
-            /><br /><br />
+            /><br />
 
-            <button type='submit' disabled={loading}>
+            <button id='loginButton' type='submit' disabled={loading}>
                 {loading ? 'Submitting...' : 'Login'}
             </button>
         </form>
+        </div>
                 </div>
             </div>
             </div>

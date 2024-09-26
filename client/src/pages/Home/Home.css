@@ -38,47 +38,93 @@
     display: flex;
     width: 60vw;
     height: 47vh;
-    background-color: plum;
+    /* background-color: plum; */
     margin-top: 1%;
     margin-bottom: 1%;
 }
 
 .signupBox {
-    background-color: red;
+    /* background-color: red; */
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#signUpForm {
+#signUpForm, #loginForm {
+    background-color: white;
     border: solid black 3px;
     border-radius: 10px;
-    height: 80%;
-    width: 80%;
+    height: 101.7%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto;
+    position: absolute;
+    top: -.8%;
+    left: 40%;
+    transform: translateX(-50%);
+}
+
+#signUpButton, #loginButton {
+     /* Pushes the button to the bottom */
+    width: 80%; /* Adjust width as needed */
+    padding: 10px; /* Add some padding for aesthetics */
+    background-color: green; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+}
+
+#signUpButton:hover, #loginButton:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+#signUpFormTitle {
+    background-color: orange;
+    border: solid black 3px;
+    border-radius: 10px;
+    height: 80%;
+    width: 60%;
+    display: flex;
+    position: relative;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+#signUpFormTitle h1, #loginFormTitle h1 {
+    position: absolute; 
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    writing-mode: vertical-rl;
+    margin: 0; 
+    font-size: 1.5rem;
+    color: #fff;
 }
 
 .loginBox {
-    background-color: blue;
+    /* background-color: blue; */
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#loginForm {
+#loginFormTitle {
+    background-color: plum;
     border: solid black 3px;
     border-radius: 10px;
     height: 80%;
-    width: 80%;
+    width: 60%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
 }
